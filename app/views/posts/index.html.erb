@@ -1,0 +1,7 @@
+<h1>投稿一覧</h1>
+<% @posts.each do |post| %>
+  <p>旅行先</p>
+ <span><%= link_to post.location, post_path(post) %></span>
+ <p>画像</p>
+  <%= attachment_image_tag post, :image, format: 'jpeg', size: '100x100' %>
+<% end %>
