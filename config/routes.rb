@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root :to => 'homes#top' 
+
+  resources :users, only:[:index, :show, :edit, :update] do
+    member do
+      get :follows, :followers
+    end
+    resource :relationships, only: [:create, :destroy]
+  end
 end
