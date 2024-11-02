@@ -7,6 +7,15 @@
       <h1 class="font-weight-normal"><%= @user.name %>さんのページ</h1>
       <% end %>
     </div>
+    <% if user_signed_in? && @user == current_user %>
+    <p class="d-flex align-self-end">
+      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
+    </p>
+    <% end %>
+    <div class="d-flex w-100">
+      <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
+      <h4 class="ml-3 mb-3 card w-100 profile"><%= @user.profile %></h4>
+    </div>
     <div class="row mt-5 index-left w-100">
       <% @posts.each do |post| %>
       <div class="one-post col-sm-3 mb-3">
@@ -19,5 +28,30 @@
       <% end %>
     </div>
     <%= paginate @posts %>
+  </div>
+</div>
+<div class="cover-user-edit">
+  <div class="container d-flex flex-column align-items-center">
+    <div class="row mt-5">
+      <h1 class="font-weight-normal">プロフィール編集</h1>
+    </div>
+    <div class="row mt-5">
+      <%= form_with model: @user, local:true do |f| %>
+      <div class="form-group">
+        <label class="form-label">名前</label>
+        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label class="form-label">プロフィール画像</label><br>
+        <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %><br>
+        <%= f.file_field :profile_image %>
+      </div>
+      <div class="form-group">
+        <label class="form-label">プロフィール</label>
+        <%= f.text_field :profile, class: "form-control" %><br>
+      </div>
+      <%= f.submit '保存する', class: "btn btn-success" %>
+      <% end %>
+    </div>
   </div>
 </div>
