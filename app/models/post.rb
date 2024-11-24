@@ -14,4 +14,13 @@ class Post < ApplicationRecord
  def favorited_by?(user)
    favorites.where(user_id: user.id).exists?
  end
+
+ before_create :set_default_views
+
+private
+
+def set_default_views
+  self.views = 0
+end
+
 end
