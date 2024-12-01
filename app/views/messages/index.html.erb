@@ -1,0 +1,22 @@
+<h1 class="chat-header">
+  <span class="chat-header-username"><%= @user.name %></span>さんとのトークルーム
+</h1>
+
+<div class="chat-container">
+  <div class="chat-messages">
+    <% @messages.each do |message| %>
+      <div class="message <%= message.sender == current_user ? 'message-current-user' : 'message-other-user' %>">
+        <div class="message-content">
+          <strong><%= message.sender == current_user ? 'あなた' : @user.name %>:</strong>
+          <%= message.content %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <form action="<%= user_messages_path(@user) %>" method="post" class="message-form">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <textarea name="message[content]" placeholder="メッセージを入力してください" required class="message-input"></textarea>
+    <button type="submit" class="message-submit">送信する</button>
+  </form>
+</div>

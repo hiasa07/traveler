@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ /*
+ *= require messages
+ */
  @import "bootstrap";
 
  html,
@@ -68,4 +71,35 @@ a:hover {
 
 .profile-img {
   border-radius: 50%;
+}
+
+body {
+  background: url('/path/to/your/image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+textarea {
+  width: 80%;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

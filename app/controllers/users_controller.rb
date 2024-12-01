@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @is_mutual_follow = current_user.mutual_follow?(@user)
     @posts = @user.posts.page(params[:page]).per(8).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
