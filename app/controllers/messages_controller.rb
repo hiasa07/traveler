@@ -10,13 +10,17 @@ class MessagesController < ApplicationController
   
     def create
       @message = current_user.sent_messages.build(receiver: @user, content: params[:message][:content])
-  
+    
       if @message.save
         redirect_to user_messages_path(@message.sender_id), notice: "メッセージを送信しました！"
       else
-        render :index, alert: "メッセージ送信に失敗しました。"
+        @messages = Message.where(sender: current_user, receiver: @user)
+                           .or(Message.where(sender: @user, receiver: current_user))
+                           .order(:created_at)
+        flash.now[:alert] = @message.errors.full_messages.join(", ")
+        render :index
       end
-    end
+    end    
   
     private
     def set_user
