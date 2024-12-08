@@ -12,7 +12,6 @@
  *
  *= require_tree .
  *= require_self
- *= require_messages
  */
  @import "bootstrap";
 
@@ -91,6 +90,123 @@ textarea {
   width: 80%;
   height: 50px;
   margin-bottom: 10px;
+}
+
+/* トークルーム全体のヘッダー */
+.chat-header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.chat-header-username {
+  color: #4A90E2;
+}
+
+/* チャットコンテナ */
+.chat-container {
+  background-image: url(/assets/message-scaled.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  height: 800vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* メッセージ表示エリア */
+.chat-messages {
+  max-width: 150px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 30px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.chat-room {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* メッセージ同士の間隔を少し空ける */
+}
+
+.message {
+  max-width: 60%; /* メッセージの幅を画面の60%までにする */
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.sender {
+  align-self: flex-start; /* 左端に寄せる */
+  background-color: pink; /* 背景をピンク色にする */
+  color: black; /* 文字の色を黒にする */
+}
+
+.receiver {
+  align-self: flex-end; /* 右端に寄せる */
+  background-color: lightgreen; /* 背景を緑色にする */
+  color: black; /* 文字の色を黒にする */
+}  
+
+/* 各メッセージ */
+.message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.message-current-user {
+  justify-content: flex-end;
+}
+
+.message-other-user {
+  justify-content: flex-start;
+}
+
+.message-content {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 60%;
+}
+
+.message-current-user .message-content {
+  background-color: #FFCCCB;
+}
+
+.message-other-user .message-content {
+  background-color: #D4F7DC;
+}
+
+/* メッセージ入力フォーム */
+.message-form {
+  display: flex;
+  margin-top: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.message-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.message-submit {
+  padding: 10px 20px;
+  background-color: #4A90E2;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px
+  cursor pointer;
+}
+
+.message-submit:hover {
+  background-color: #357ABD;
 }
 
 button {

@@ -1,22 +1,49 @@
-<h1 class="chat-header">
-  <span class="chat-header-username"><%= @user.name %></span>さんとのトークルーム
+<h1 style="text-align: center;">
+  <span style="color: #4A90E2;"><%= @user.name %></span>さんとのトークルーム
 </h1>
-
-<div class="chat-container">
-  <div class="chat-messages">
+<div style="background-image: url(/assets/message-scaled.jpg); background-size: cover; background-position: center; padding: 20px; height: 80vh; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+  <!-- 背景の白いボックス -->
+  <div style="
+    width: 90%; /* 横幅を広げる */
+    max-width: 1200px; /* 横幅の最大値を設定 */
+    height: 60%; /* 縦幅を狭くする */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    overflow-y: auto;
+    margin: 20px 0;
+  ">
     <% @messages.each do |message| %>
-      <div class="message <%= message.sender == current_user ? 'message-current-user' : 'message-other-user' %>">
-        <div class="message-content">
-          <strong><%= message.sender == current_user ? 'あなた' : @user.name %>:</strong>
+      <div style="margin-bottom: 15px; display: flex; justify-content: <%= message.sender == current_user ? 'flex-start' : 'flex-end' %>; text-align: left;">
+        <div style="
+          display: inline-block;
+          padding: 15px 20px;
+          border-radius: 20px;
+          background-color: <%= message.sender == current_user ? '#FFCCCB' : '#D4F7DC' %>;
+          max-width: 85%;
+        ">
           <%= message.content %>
         </div>
       </div>
     <% end %>
   </div>
-
-  <form action="<%= user_messages_path(@user) %>" method="post" class="message-form">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <textarea name="message[content]" placeholder="メッセージを入力してください" required class="message-input"></textarea>
-    <button type="submit" class="message-submit">送信する</button>
-  </form>
 </div>
+
+<!-- フォーム部分 -->
+<form action="<%= user_messages_path(@user) %>" method="post" style="
+  position: fixed;
+  bottom: 0;
+  width: 80%;
+  max-width: 500px;
+  background-color: #fff;
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <textarea name="message[content]" placeholder="メッセージを入力してください" required style="flex: 1; padding: 15px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+  <button type="submit" style="padding: 15px 20px; background-color: #4A90E2; color: white; border: none; border-radius: 5px; margin-left: 5px;">送信する</button>
+</form>
