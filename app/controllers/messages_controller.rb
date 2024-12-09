@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
 
   private
   def set_user
-    user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
     redirect_to root_path, alert: "ユーザーが見つかりませんでした。" unless @user
   end
 end
