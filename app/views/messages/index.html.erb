@@ -15,26 +15,26 @@
   ">
     <% @messages.each do |message| %>
       <% if message.sender == current_user %>
-        <!-- 送信者のメッセージ（左寄せ、ピンク背景） -->
+      <!-- 送信者のメッセージ（右寄せ、緑背景） -->
+      <div style="margin-bottom: 15px; display: flex; justify-content: flex-end; text-align: left;">
+        <div style="
+          display: inline-block;
+          padding: 15px 20px;
+          border-radius: 20px;
+          background-color: #D4F7DC;
+          max-width: 85%;
+        ">
+            <%= message.content %>
+          </div>
+        </div>
+      <% else %>
+        <!-- 受信者のメッセージ（左寄せ、ピンク背景） -->
         <div style="margin-bottom: 15px; display: flex; justify-content: flex-start; text-align: left;">
           <div style="
             display: inline-block;
             padding: 15px 20px;
             border-radius: 20px;
             background-color: #FFCCCB;
-            max-width: 85%;
-          ">
-            <%= message.content %>
-          </div>
-        </div>
-      <% else %>
-        <!-- 受信者のメッセージ（右寄せ、緑背景） -->
-        <div style="margin-bottom: 15px; display: flex; justify-content: flex-end; text-align: left;">
-          <div style="
-            display: inline-block;
-            padding: 15px 20px;
-            border-radius: 20px;
-            background-color: #D4F7DC;
             max-width: 85%;
           ">
             <%= message.content %>

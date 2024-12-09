@@ -7,7 +7,7 @@
       <div style="text-align: center; margin-top: 20px;">
         <h1 class="font-weight-normal"><%= @user.name %>さんのページ</h1>
         <% if @is_mutual_follow %>
-          <%= link_to "チャットを始める", user_messages_path(current_user), class: "btn btn-primary" %>
+          <%= link_to "チャットを始める", user_messages_path(user_id: @user.id), class: "btn btn-primary" %>
       <% end %>
       </div>
       <% end %>
